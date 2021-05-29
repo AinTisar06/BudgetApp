@@ -6,10 +6,9 @@ export default function Header() {
   return(
     <div>
       <h1>Header</h1>
-      <NavLink to="/" exact>Home</NavLink>
-      <NavLink to="/addExpense">Add Expense</NavLink>
-      <NavLink to="/edit">Edit</NavLink>
-      <NavLink to="/help">Help</NavLink>
+      <NavLink to="/" exact activeClassName="is-active">Home</NavLink>
+      <NavLink to="/addExpense" activeClassName="is-active">Add Expense</NavLink>
+      <NavLink to="/help" activeClassName="is-active">Help</NavLink>
     </div>
   )
 }
