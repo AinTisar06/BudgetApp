@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+
 import "./styles/style.scss";
 
 export default function App() {
@@ -25,4 +26,3 @@ export default function App() {
     </Router>
   );
 }
-
