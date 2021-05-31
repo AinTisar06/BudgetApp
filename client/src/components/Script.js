@@ -12,13 +12,11 @@ const Info = (props) => {
 const requireAuthentication = (WrappedComponent) => {
   return (props) => (
     <div>
-      { !props.isAdmin && <p>Please Login</p> }
+      {!props.isAdmin && <p>Please Login</p>}
       <WrappedComponent {...props} />
     </div>
-  )
-}
-
-
+  );
+};
 
 const authInfo = requireAuthentication(Info);
 export default authInfo;
