@@ -7,7 +7,7 @@ export default function Home() {
       <h1>Welcome</h1>
       <p>This is my site. Take a look</p>
       <p>This is my site. Take a look</p>
-      <Script />
+      <Script isAdmin = {false} info = "There are the details" />
     </div>
   );
 }
