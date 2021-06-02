@@ -6,8 +6,6 @@ import { Provider } from "react-redux";
 
 import configStore from "./store/configStore";
 import { addExpense } from "./actions/expensesAction";
-import { setTextFilter } from "./actions/filtersAction";
-import getVisibleExpenses from "./selectors/expensesSelector";
 
 import Home from "./pages/Home";
 import AddExpense from "./pages/AddExpense";
@@ -21,15 +19,9 @@ import "./styles/style.scss";
 
 const store = configStore();
 
-store.subscribe(() => {
-  const state = store.getState();
-  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-  // console.log(visibleExpenses);
-});
-
 store.dispatch(addExpense({ description: "Water bill", amount: 120 }));
-store.dispatch(addExpense({ description: "Gas bill", amount: 300 }));
-store.dispatch(setTextFilter("bill"));
+store.dispatch(addExpense({ description: "Gas bill",  createdAt: 1000}));
+store.dispatch(addExpense({ description: "Rent", amount: 109500, createdAt: 150 }));
 
 export default function App() {
   return (
