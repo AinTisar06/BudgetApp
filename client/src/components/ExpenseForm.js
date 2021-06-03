@@ -1,62 +1,112 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { addExpense } from "../actions/expensesAction";
+import React, { Component } from "react";
+import moment from "moment";
+import "react-dates/initialize";
+import { SingleDatePicker } from "react-dates";
+import "react-dates/lib/css/_datepicker.css";
 
-function ExpenseForm(props) {
-  const [state, setState] = useState({});
+export default class ExpenseForm extends Component {
+  constructor(props) {
+    super(props);
 
-  const handleDescription = (e) => {
-    const description = e.target.value;
-    setState({ ...state, description });
-  };
+    this.state = {
+      description: "",
+      note: "",
+      amount: "",
+      createdAt: moment(),
+      focused: false,
+      error: "",
+    };
+  }
 
-  const handleAmount = (e) => {
-    let amount = e.target.value;
-    // Regular Expression for Money 
-    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
-      setState({ ...state, amount });
+  onDateChange = (createdAt) => {
+    if (createdAt) {
+      this.setState(() => ({ createdAt }));
     }
   };
 
-  const handleNote = (e) => {
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ focused }));
+  };
+
+  handleDescription = (e) => {
+    const description = e.target.value;
+    this.setState(() => ({ description }));
+  };
+
+  handleAmount = (e) => {
+    const amount = e.target.value;
+    // Regular Expression for Money
+    if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+      this.setState(() => ({ amount }));
+    }
+  };
+
+  handleNote = (e) => {
     const note = e.target.value;
-    setState({ ...state, note });
+    this.setState(() => ({ note }));
   };
 
-  const handleAddExpense = (e) => {
+  handleAddExpense = (e) => {
     e.preventDefault();
-    props.dispatch(addExpense(state));
-    setState({ description: "", note: "", amount: 0 });
+    if (!this.state.description || !this.state.amount) {
+      this.setState(() => ({
+        error: "Please provide description and amount!",
+      }));
+    } else {
+      this.setState(() => ({ error: "" }));
+      this.props.onSubmit({
+        description: this.state.description,
+        amount: parseFloat(this.state.amount),
+        createdAt: this.state.createdAt.valueOf(),
+        note: this.state.note,
+      });
+      this.setState(() => ({
+        description: "",
+        note: "",
+        amount: "",
+        createdAt: moment(),
+      }));
+    }
   };
 
-  return (
-    <div>
-      <form onSubmit={handleAddExpense}>
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={state.description || ""}
-          onChange={handleDescription}
-          autoFocus
-        />
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          value={state.amount || ""}
-          onChange={handleAmount}
-        />
-        <textarea
-          placeholder="Note"
-          name="note"
-          value={state.note || ""}
-          onChange={handleNote}
-        />
-        <button type="submit">Add</button>
-      </form>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        {this.state.error && <p>{this.state.error}</p>}
+        <form onSubmit={this.handleAddExpense}>
+          <input
+            type="text"
+            placeholder="Description"
+            name="description"
+            value={this.state.description}
+            onChange={this.handleDescription}
+            autoFocus
+          />
+          <input
+            type="number"
+            name="amount"
+            placeholder="Amount"
+            value={this.state.amount}
+            onChange={this.handleAmount}
+          />
+          <SingleDatePicker
+            date={this.state.createdAt}
+            onDateChange={this.onDateChange}
+            focused={this.state.focused}
+            onFocusChange={this.onFocusChange}
+            id="your_unique_id"
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+          />
+          <textarea
+            name="note"
+            placeholder="Note"
+            value={this.state.note}
+            onChange={this.handleNote}
+          />
+          <button type="submit">Add Expense</button>
+        </form>
+      </div>
+    );
+  }
 }
-
-export default connect()(ExpenseForm);
