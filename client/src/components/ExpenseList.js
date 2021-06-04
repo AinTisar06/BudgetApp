@@ -9,7 +9,7 @@ function ExpenseList(props) {
     <div>
       <h1>ExpenseList</h1>
       {props.expenses.map((expense) => (
-        <Expense key={expense.id} {...expense} />
+        <Expense key={expense.id} expense={expense} />
       ))}
       <FilterForm />
     </div>

@@ -3,7 +3,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { Provider } from "react-redux";
-
 import configStore from "./store/configStore";
 import { addExpense } from "./actions/expensesAction";
 
@@ -19,15 +18,13 @@ import "./styles/style.scss";
 
 const store = configStore();
 
-// store.subscribe(() => {
-//   console.log(store.getState());
-// })
+store.subscribe(() => {
+  console.log(store.getState());
+});
 
 store.dispatch(addExpense({ description: "Water bill", amount: 120 }));
-store.dispatch(addExpense({ description: "Gas bill", createdAt: 1000 }));
-store.dispatch(
-  addExpense({ description: "Rent", amount: 109500, createdAt: 150 })
-);
+store.dispatch(addExpense({ description: "Gas bill" }));
+store.dispatch(addExpense({ description: "Rent", amount: 109500 }));
 
 export default function App() {
   return (

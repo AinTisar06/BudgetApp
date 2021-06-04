@@ -8,7 +8,7 @@ export default class ExpenseForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    const defaultStateObj = {
       description: "",
       note: "",
       amount: "",
@@ -16,6 +16,15 @@ export default class ExpenseForm extends Component {
       focused: false,
       error: "",
     };
+
+    this.state = props.expense
+      ? {
+          ...props.expense,
+          createdAt: moment(props.expense.createdAt),
+          focused: false,
+          error: "",
+        }
+      : defaultStateObj;
   }
 
   onDateChange = (createdAt) => {
@@ -94,7 +103,6 @@ export default class ExpenseForm extends Component {
             onDateChange={this.onDateChange}
             focused={this.state.focused}
             onFocusChange={this.onFocusChange}
-            id="your_unique_id"
             numberOfMonths={1}
             isOutsideRange={() => false}
           />
@@ -104,7 +112,9 @@ export default class ExpenseForm extends Component {
             value={this.state.note}
             onChange={this.handleNote}
           />
-          <button type="submit">Add Expense</button>
+          <button type="submit">
+            {this.props.expense ? "Edit Expense" : "Add Expense"}
+          </button>
         </form>
       </div>
     );
