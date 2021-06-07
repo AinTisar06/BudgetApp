@@ -18,9 +18,9 @@ import "./styles/style.scss";
 
 const store = configStore();
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+// store.subscribe(() => {
+//   console.log(store.getState());
+// });
 
 store.dispatch(addExpense({ description: "Water bill", amount: 120 }));
 store.dispatch(addExpense({ description: "Gas bill" }));

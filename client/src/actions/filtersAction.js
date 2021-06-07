@@ -11,14 +11,14 @@ const sortByDate = () => ({
   type: "SORT_BY_DATE",
 });
 
-const setStartDate = (timestamp) => ({
+const setStartDate = (momentObj) => ({
   type: "SET_START_DATE",
-  timestamp,
+  momentObj,
 });
 
-const setEndDate = (timestamp) => ({
+const setEndDate = (momentObj) => ({
   type: "SET_END_DATE",
-  timestamp,
+  momentObj,
 });
 
 export { setTextFilter, sortByAmount, sortByDate, setStartDate, setEndDate };
