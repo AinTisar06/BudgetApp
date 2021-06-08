@@ -23,7 +23,7 @@ const store = configStore();
 // });
 
 store.dispatch(addExpense({ description: "Water bill", amount: 120 }));
-store.dispatch(addExpense({ description: "Gas bill" }));
+store.dispatch(addExpense({ description: "Gas bill", amount: 500 }));
 store.dispatch(addExpense({ description: "Rent", amount: 109500 }));
 
 export default function App() {

@@ -4,7 +4,6 @@ import ExpenseForm from "../components/ExpenseForm";
 import { editExpense, removeExpense } from "../actions/expensesAction";
 
 function Edit(props) {
-  console.log(props);
   return (
     <div>
       <ExpenseForm

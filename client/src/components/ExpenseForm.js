@@ -1,122 +1,104 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import moment from "moment";
 import "react-dates/initialize";
 import { SingleDatePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 
-export default class ExpenseForm extends Component {
-  constructor(props) {
-    super(props);
+function ExpenseForm(props) {
+  const [description, setDescription] = useState(
+    props.expense ? props.expense.description : ""
+  );
+  const [note, setNote] = useState(props.expense ? props.expense.note : "");
+  const [amount, setAmount] = useState(
+    props.expense ? props.expense.amount : ""
+  );
+  const [createdAt, setCreatedAt] = useState(
+    props.expense ? moment(props.expense.createdAt) : moment()
+  );
+  const [focused, setFocused] = useState(false);
+  const [error, setError] = useState("");
 
-    const defaultStateObj = {
-      description: "",
-      note: "",
-      amount: "",
-      createdAt: moment(),
-      focused: false,
-      error: "",
-    };
-
-    this.state = props.expense
-      ? {
-          ...props.expense,
-          createdAt: moment(props.expense.createdAt),
-          focused: false,
-          error: "",
-        }
-      : defaultStateObj;
-  }
-
-  onDateChange = (createdAt) => {
-    if (createdAt) {
-      this.setState(() => ({ createdAt }));
-    }
-  };
-
-  onFocusChange = ({ focused }) => {
-    this.setState(() => ({ focused }));
-  };
-
-  handleDescription = (e) => {
+  const handleDescription = (e) => {
     const description = e.target.value;
-    this.setState(() => ({ description }));
+    setDescription(description);
   };
 
-  handleAmount = (e) => {
+  const handleAmount = (e) => {
     const amount = e.target.value;
     // Regular Expression for Money
     if (amount.match(/^\d*(\.\d{0,2})?$/)) {
-      this.setState(() => ({ amount }));
+      setAmount(amount);
     }
   };
 
-  handleNote = (e) => {
+  const handleNote = (e) => {
     const note = e.target.value;
-    this.setState(() => ({ note }));
+    setNote(note);
   };
 
-  handleAddExpense = (e) => {
+  const onDateChange = (date) => {
+    setCreatedAt(date);
+  };
+
+  const onFocusChange = ({ focused }) => {
+    setFocused(focused);
+  };
+
+  const handleAddExpense = (e) => {
     e.preventDefault();
-    if (!this.state.description || !this.state.amount) {
-      this.setState(() => ({
-        error: "Please provide description and amount!",
-      }));
+    if (!description || !amount) {
+      setError("Please provide description and amount!");
     } else {
-      this.setState(() => ({ error: "" }));
-      this.props.onSubmit({
-        description: this.state.description,
-        amount: parseFloat(this.state.amount),
-        createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note,
+      setError("");
+      props.onSubmit({
+        description: description,
+        note: note,
+        amount: amount,
+        createdAt: createdAt.valueOf(),
       });
-      this.setState(() => ({
-        description: "",
-        note: "",
-        amount: "",
-        createdAt: moment(),
-      }));
     }
   };
 
-  render() {
-    return (
-      <div>
-        {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={this.handleAddExpense}>
-          <input
-            type="text"
-            placeholder="Description"
-            name="description"
-            value={this.state.description}
-            onChange={this.handleDescription}
-            autoFocus
-          />
-          <input
-            type="number"
-            name="amount"
-            placeholder="Amount"
-            value={this.state.amount}
-            onChange={this.handleAmount}
-          />
-          <SingleDatePicker
-            date={this.state.createdAt}
-            onDateChange={this.onDateChange}
-            focused={this.state.focused}
-            onFocusChange={this.onFocusChange}
-            numberOfMonths={1}
-            isOutsideRange={() => false}
-          />
-          <textarea
-            name="note"
-            placeholder="Note"
-            value={this.state.note}
-            onChange={this.handleNote}
-          />
-          <button type="submit">
-            {this.props.expense ? "Edit Expense" : "Add Expense"}
-          </button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      {error && <p>{error}</p>}
+      <form onSubmit={handleAddExpense}>
+        <input
+          type="text"
+          placeholder="Description"
+          name="description"
+          value={description}
+          onChange={handleDescription}
+          autoFocus
+        />
+        <input
+          type="number"
+          name="amount"
+          placeholder="Amount"
+          value={amount}
+          onChange={handleAmount}
+        />
+        <SingleDatePicker
+          date={createdAt}
+          onDateChange={onDateChange}
+          focused={focused}
+          onFocusChange={onFocusChange}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+          id="murat"
+        />
+        <textarea
+          name="note"
+          placeholder="Note"
+          value={note}
+          onChange={handleNote}
+        />
+        <button type="submit">
+          {props.expense ? "Edit Expense" : "Add Expense"}
+        </button>
+      </form>
+    </div>
+  );
 }
+
+export default ExpenseForm;
