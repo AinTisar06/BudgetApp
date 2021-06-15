@@ -19,9 +19,7 @@ function FilterForm(props) {
 
   const handleInput = (e) => {
     const userInput = e.target.value;
-    if (userInput) {
-      props.dispatch(setTextFilter(userInput));
-    }
+    props.dispatch(setTextFilter(userInput));
   };
 
   const handleSelect = (e) => {
