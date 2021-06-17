@@ -3,25 +3,14 @@ import { connect } from "react-redux";
 import Expense from "./Expense";
 import FilterForm from "./FilterForm";
 import getVisibleExpenses from "../selectors/expensesSelector";
-import expensesTotal from "../selectors/expensesTotal";
+import ExpensesSummary from "./ExpensesSummary";
+
 
 function ExpenseList(props) {
   return (
     <div>
       <h1>ExpenseList</h1>
-      {props.expenses.length !== 0 && (
-        <>
-          <h5>Expense count: {props.expenses.length}</h5>
-          <h5>
-            Expenses total:
-            {new Intl.NumberFormat("tr-TR", {
-              style: "currency",
-              currency: "TRY",
-            }).format(expensesTotal(props.expenses))}
-          </h5>
-          
-        </>
-      )}
+      { props.expenses.length !== 0 && <ExpensesSummary /> }
       {props.expenses.map((expense) => (
         <Expense key={expense.id} expense={expense} />
       ))}
