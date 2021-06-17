@@ -9,7 +9,12 @@ function Expense(props) {
         <h3>{props.expense.description}</h3>
       </Link>
       <p>
-        {props.expense.amount} - {moment(props.expense.createdAt).fromNow()}
+        {new Intl.NumberFormat("tr-TR", {
+          style: "currency",
+          currency: "TRY",
+        }).format(props.expense.amount)}
+        <br />
+        {moment(props.expense.createdAt).format("DD/MM/YYYY")}
       </p>
     </div>
   );

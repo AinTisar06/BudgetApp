@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.8.3",
     "moment": "^2.18.1",
     "node-sass": "^6.0.0",
+    "numeral": "^2.0.6",
     "react": "^16.14.0",
     "react-dates": "^21.8.0",
     "react-dom": "^16.14.0",
