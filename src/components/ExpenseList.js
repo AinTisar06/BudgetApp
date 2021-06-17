@@ -9,8 +9,19 @@ function ExpenseList(props) {
   return (
     <div>
       <h1>ExpenseList</h1>
-      <h3>Expense count: {props.expenses.length}</h3>
-      <h3>Expenses total: {expensesTotal(props.expenses)}</h3>
+      {props.expenses.length !== 0 && (
+        <>
+          <h5>Expense count: {props.expenses.length}</h5>
+          <h5>
+            Expenses total:
+            {new Intl.NumberFormat("tr-TR", {
+              style: "currency",
+              currency: "TRY",
+            }).format(expensesTotal(props.expenses))}
+          </h5>
+          
+        </>
+      )}
       {props.expenses.map((expense) => (
         <Expense key={expense.id} expense={expense} />
       ))}

@@ -1,6 +1,6 @@
 const expensesTotal = (expenses) => {
-  return expenses.reduce((first, second) => {
-    return first.amount + second.amount;
+  return expenses.reduce((acc, current) => {
+    return parseFloat(current.amount) + acc;
   }, 0);
 };
 

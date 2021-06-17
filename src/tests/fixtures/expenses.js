@@ -19,7 +19,7 @@ const expenses = [
     id: "3",
     description: "Kredi Kartı",
     note: "En para",
-    amount: 2000,
+    amount: 200.15,
     createdAt: moment(0).add(3, "days").valueOf(),
   },
 ];
