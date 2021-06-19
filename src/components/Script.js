@@ -39,6 +39,7 @@ const Script = () => {
         console.log(err);
       });
   };
+
   const handleSet = () => {
     const personRef = firebase.database().ref();
 
@@ -55,6 +56,7 @@ const Script = () => {
         console.log(err);
       });
   };
+
   const handleRemove = () => {
     firebase
       .database()
@@ -66,6 +68,37 @@ const Script = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleGet = () => {
+    const cb = firebase
+      .database()
+      .ref()
+      .on(
+        "value",
+        (snapshot) => {
+          const {name, job: {title, company}} = snapshot.val();
+          console.log(
+            `${name} is a ${title} at ${company}`
+          );
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+
+    // For only once fetch data
+    // firebase
+    //   .database()
+    //   .ref()
+    //   .once("value")
+    //   .then((snapshot) => {
+    //     const val = snapshot.val();
+    //     console.log(val);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
@@ -87,6 +120,7 @@ const Script = () => {
       <button onClick={handleSubmit}>Add</button>
       <button onClick={handleSet}>Set</button>
       <button onClick={handleRemove}>Remove</button>
+      <button onClick={handleGet}>Get</button>
     </div>
   );
 };
