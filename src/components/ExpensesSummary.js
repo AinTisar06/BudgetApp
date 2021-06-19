@@ -8,7 +8,7 @@ function ExpensesSummary() {
     getVisibleExpenses(state.expenses, state.filters)
   );
   const expensesCount = visibleExpenses.length;
-  const amount = new Intl.NumberFormat("tr-TR", {
+  const total = new Intl.NumberFormat("tr-TR", {
     style: "currency",
     currency: "TRY",
   }).format(expensesTotal(visibleExpenses));
@@ -16,12 +16,12 @@ function ExpensesSummary() {
   return (
     <>
       <p>
-        Viewing <strong>{expensesCount}</strong>
+        Viewing: <strong>{` ${expensesCount}`}</strong>
         {expensesCount > 1 ? " expenses" : " expense"}.
       </p>
       <p>
         Totaling:
-        <strong>{amount}</strong>
+        <strong>{` ${total}`}</strong>
       </p>
     </>
   );

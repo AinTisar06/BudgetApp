@@ -10,7 +10,7 @@ function ExpenseForm(props) {
   );
   const [note, setNote] = useState(props.expense ? props.expense.note : "");
   const [amount, setAmount] = useState(
-    props.expense ? props.expense.amount : ""
+    props.expense ? props.expense.amount : 0
   );
   const [createdAt, setCreatedAt] = useState(
     props.expense ? moment(props.expense.createdAt) : moment()
@@ -51,9 +51,9 @@ function ExpenseForm(props) {
     } else {
       setError("");
       props.onSubmit({
-        description: description,
-        note: note,
-        amount: amount,
+        description,
+        note,
+        amount: parseFloat(amount),
         createdAt: createdAt.valueOf(),
       });
     }
