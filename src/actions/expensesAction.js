@@ -1,20 +1,32 @@
-import {  v4 as uuidv4 } from "uuid";
+import firebase from "../firebase/firebase";
 
-const addExpense = ({
-  amount = 0,
-  note = "",
-  description = "",
-  createdAt = 0,
-} = {}) => ({
+const addExpense = (expense) => ({
   type: "ADD_EXPENSE",
-  expense: {
-    id: uuidv4(),
-    description,
-    note,
-    amount,
-    createdAt,
-  },
+  expense,
 });
+
+const startAddExpense = (expenseData = {}) => {
+  return (dispatch) => {
+    const {
+      amount = 0,
+      note = "",
+      description = "",
+      createdAt = 0,
+    } = expenseData;
+    const expense = { amount, note, description, createdAt };
+    firebase
+      .database()
+      .ref("expenses")
+      .push(expense)
+      .then((ref) => {
+        // dispatch(addExpense({id: ref.key, ...expense}))
+        dispatch({ type: "ADD_EXPENSE", expense: { id: ref.key, ...expense } });
+      })
+      .catch((err) => {
+        console.log("Something went wrong!", err);
+      });
+  };
+};
 
 const removeExpense = (id) => ({
   type: "REMOVE_EXPENSE",
@@ -27,4 +39,4 @@ const editExpense = (id, changeObj) => ({
   changeObj,
 });
 
-export { addExpense, removeExpense, editExpense };
+export { removeExpense, editExpense, startAddExpense, addExpense };

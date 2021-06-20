@@ -1,7 +1,7 @@
 import { React } from "react";
 import ExpenseForm from "../components/ExpenseForm";
 import { useDispatch } from "react-redux";
-import { addExpense } from "../actions/expensesAction";
+import { startAddExpense } from "../actions/expensesAction";
 
 export default function AddExpense(props) {
 
@@ -12,7 +12,7 @@ export default function AddExpense(props) {
       <h1>Add Expense</h1>
       <ExpenseForm
         onSubmit={(expense) => {
-          dispatch(addExpense(expense));
+          dispatch(startAddExpense(expense));
           props.history.push("/");
         }}
       />

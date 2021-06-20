@@ -1,17 +1,19 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import Expense from "./Expense";
 import FilterForm from "./FilterForm";
 import getVisibleExpenses from "../selectors/expensesSelector";
 import ExpensesSummary from "./ExpensesSummary";
 
-
 function ExpenseList(props) {
+  const expenses = useSelector((state) =>
+    getVisibleExpenses(state.expenses, state.filters)
+  );
   return (
     <div>
       <h1>ExpenseList</h1>
-      { props.expenses.length !== 0 && <ExpensesSummary /> }
-      {props.expenses.map((expense) => (
+      {expenses.length !== 0 && <ExpensesSummary />}
+      {expenses.map((expense) => (
         <Expense key={expense.id} expense={expense} />
       ))}
       <FilterForm />
@@ -19,8 +21,4 @@ function ExpenseList(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  expenses: getVisibleExpenses(state.expenses, state.filters),
-});
-
-export default connect(mapStateToProps)(ExpenseList);
+export default ExpenseList;

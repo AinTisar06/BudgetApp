@@ -41,13 +41,14 @@ const Script = () => {
   };
 
   const handleSet = () => {
-    const personRef = firebase.database().ref();
+    const personRef = firebase.database().ref("expenses");
 
     personRef
-      .update({
-        stressLevel: 9,
-        "job/company": "Amazon",
-        "location/city": "Seattle",
+      .push({
+        description: "3",
+        note: "",
+        amount: 98.5,
+        createdAt: 110,
       })
       .then(() => {
         console.log("Data is changed");
@@ -73,20 +74,24 @@ const Script = () => {
   const handleGet = () => {
     const cb = firebase
       .database()
-      .ref()
+      .ref("expenses")
       .on(
         "value",
         (snapshot) => {
-          const {name, job: {title, company}} = snapshot.val();
-          console.log(
-            `${name} is a ${title} at ${company}`
-          );
+          const expenses = [];
+          snapshot.forEach((childSnapshot) => {
+            expenses.push({
+              id: childSnapshot.key,
+              ...childSnapshot.val(),
+            });
+          });
+          console.log(expenses);
         },
         (err) => {
           console.log(err);
         }
       );
-
+      
     // For only once fetch data
     // firebase
     //   .database()
