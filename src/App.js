@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import configStore from "./store/configStore";
+import { setExpenses } from "./actions/expensesAction";
 
 import Home from "./pages/Home";
 import AddExpense from "./pages/AddExpense";
@@ -17,6 +18,10 @@ import "./styles/style.scss";
 const store = configStore();
 
 export default function App() {
+  useEffect(() => {
+    store.dispatch(setExpenses());
+  }, []);
+
   return (
     <Provider store={store}>
       <Router>

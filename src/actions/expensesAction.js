@@ -1,11 +1,6 @@
 import firebase from "../firebase/firebase";
 
-const addExpense = (expense) => ({
-  type: "ADD_EXPENSE",
-  expense,
-});
-
-const startAddExpense = (expenseData = {}) => {
+const addExpense = (expenseData = {}) => {
   return (dispatch) => {
     const {
       amount = 0,
@@ -19,7 +14,6 @@ const startAddExpense = (expenseData = {}) => {
       .ref("expenses")
       .push(expense)
       .then((ref) => {
-        // dispatch(addExpense({id: ref.key, ...expense}))
         dispatch({ type: "ADD_EXPENSE", expense: { id: ref.key, ...expense } });
       })
       .catch((err) => {
@@ -39,4 +33,29 @@ const editExpense = (id, changeObj) => ({
   changeObj,
 });
 
-export { removeExpense, editExpense, startAddExpense, addExpense };
+const setExpenses = () => {
+  return (dispatch) => {
+    firebase
+      .database()
+      .ref("expenses")
+      .once("value")
+      .then((snapshot) => {
+        const expenses = [];
+        snapshot.forEach((childSnapshot) => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val(),
+          });
+        });
+        dispatch({
+          type: "SET_EXPENSES",
+          expenses,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export { removeExpense, editExpense, addExpense, setExpenses };

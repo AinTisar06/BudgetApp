@@ -1,21 +1,28 @@
 import { React } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ExpenseForm from "../components/ExpenseForm";
 import { editExpense, removeExpense } from "../actions/expensesAction";
 
 function Edit(props) {
+  const expense = useSelector((state) => {
+    return state.expenses.find(
+      (expense) => expense.id === props.match.params.id
+    );
+  });
+  const dispatch = useDispatch();
+
   return (
     <div>
       <ExpenseForm
-        expense={props.expense}
+        expense={expense}
         onSubmit={(changeObj) => {
-          props.dispatch(editExpense(props.match.params.id, changeObj));
+          dispatch(editExpense(props.match.params.id, changeObj));
           props.history.push("/");
         }}
       />
       <button
         onClick={() => {
-          props.dispatch(removeExpense(props.match.params.id));
+          dispatch(removeExpense(props.match.params.id));
           props.history.push("/");
         }}
       >
@@ -25,10 +32,4 @@ function Edit(props) {
   );
 }
 
-const mapStateToProps = (state, props) => ({
-  expense: state.expenses.find(
-    (expense) => expense.id === props.match.params.id
-  ),
-});
-
-export default connect(mapStateToProps)(Edit);
+export default Edit;
