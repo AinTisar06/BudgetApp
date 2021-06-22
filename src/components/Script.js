@@ -41,14 +41,12 @@ const Script = () => {
   };
 
   const handleSet = () => {
-    const personRef = firebase.database().ref("expenses");
+    const personRef = firebase.database().ref("expenses/-Mcmt6sSTmTAl5Tk53zy");
 
     personRef
-      .push({
-        description: "3",
-        note: "",
+      .update({
+        note: "update",
         amount: 98.5,
-        createdAt: 110,
       })
       .then(() => {
         console.log("Data is changed");
@@ -61,7 +59,7 @@ const Script = () => {
   const handleRemove = () => {
     firebase
       .database()
-      .ref()
+      .ref("expenses/-McmqnZyM8VO9Q8P6cf7")
       .remove()
       .then(() => {
         console.log("Data removed");
@@ -91,7 +89,7 @@ const Script = () => {
           console.log(err);
         }
       );
-      
+
     // For only once fetch data
     // firebase
     //   .database()
@@ -123,7 +121,7 @@ const Script = () => {
         onChange={handleChange}
       />
       <button onClick={handleSubmit}>Add</button>
-      <button onClick={handleSet}>Set</button>
+      <button onClick={handleSet}>Update</button>
       <button onClick={handleRemove}>Remove</button>
       <button onClick={handleGet}>Get</button>
     </div>

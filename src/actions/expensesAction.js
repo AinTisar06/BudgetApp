@@ -22,17 +22,35 @@ const addExpense = (expenseData = {}) => {
   };
 };
 
-const removeExpense = (id) => ({
-  type: "REMOVE_EXPENSE",
-  id,
-});
+const editExpense = (id, changeObj) => {
+  return (dispatch) => {
+    firebase
+      .database()
+      .ref(`expenses/${id}`)
+      .update(changeObj)
+      .then(() => {
+        dispatch({ type: "EDIT_EXPENSE", id, changeObj });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
 
-const editExpense = (id, changeObj) => ({
-  type: "EDIT_EXPENSE",
-  id,
-  changeObj,
-});
+const removeExpense = (id) => {
+  return (dispatch) => {
+    firebase
+      .database()
+      .ref(`expenses/${id}`)
+      .remove()
+      .then(() => {
+        dispatch({ type: "REMOVE_EXPENSE", id });
+      })
+      .catch((err) => console.error(err));
+  };
+};
 
+// Initial fetch from firebase
 const setExpenses = () => {
   return (dispatch) => {
     firebase
