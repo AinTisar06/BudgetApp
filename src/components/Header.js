@@ -1,14 +1,28 @@
 import { React } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { startLogout } from "../actions/auth";
 
+function Header() {
+  const dispatch = useDispatch();
 
-export default function Header() {
-  return(
+  return (
     <div>
-      <h1>Header</h1>
-      <NavLink to="/" exact activeClassName="is-active">Home</NavLink>
-      <NavLink to="/addExpense" activeClassName="is-active">Add Expense</NavLink>
-      <NavLink to="/help" activeClassName="is-active">Help</NavLink>
+      <NavLink to="/" exact>
+        <h2>Header</h2>
+      </NavLink>
+      <NavLink to="/dashboard" activeClassName="is-active">
+        Dashborad
+      </NavLink>
+      <NavLink to="/addExpense" activeClassName="is-active">
+        Add Expense
+      </NavLink>
+      <NavLink to="/help" activeClassName="is-active">
+        Help
+      </NavLink>
+      <button onClick={dispatch(startLogout)}>Log out</button>
     </div>
-  )
+  );
 }
+
+export default Header;

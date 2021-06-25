@@ -17,13 +17,13 @@ function Edit(props) {
         expense={expense}
         onSubmit={(changeObj) => {
           dispatch(editExpense(props.match.params.id, changeObj));
-          props.history.push("/");
+          props.history.push("/dashboard");
         }}
       />
       <button
         onClick={() => {
           dispatch(removeExpense(props.match.params.id));
-          props.history.push("/");
+          props.history.push("/dashboard");
         }}
       >
         Remove

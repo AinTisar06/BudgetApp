@@ -1,7 +1,7 @@
 import { React } from "react";
 import Script from "../components/Script"
 
-export default function Help() {
+function Help() {
   return (
     <div>
       <p>My Email: mrtozdmr92@gmail.com</p>
@@ -10,3 +10,5 @@ export default function Help() {
     </div>
   )
 }
+
+export default Help;

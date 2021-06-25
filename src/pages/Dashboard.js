@@ -1,7 +1,7 @@
 import { React } from "react";
 import ExpenseList from "../components/ExpenseList";
 
-function Home(props) {
+function Dashboard(props) {
   return (
     <div>
       <ExpenseList />
@@ -9,4 +9,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default Dashboard;
