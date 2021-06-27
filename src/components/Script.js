@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import firebase from "../firebase/firebase";
+
+import { login } from "../actions/authAction";
 
 const Script = () => {
   const [name, setName] = useState("");
@@ -104,6 +107,12 @@ const Script = () => {
     //   });
   };
 
+  const dispatch = useDispatch();
+
+  const handleStore = () => {
+    dispatch(login("ngZjEqhSvIMx6n05R96iMKy8StA3"));
+  }
+
   return (
     <div>
       <input
@@ -124,6 +133,7 @@ const Script = () => {
       <button onClick={handleSet}>Update</button>
       <button onClick={handleRemove}>Remove</button>
       <button onClick={handleGet}>Get</button>
+      <button onClick={handleStore}>Store</button>
     </div>
   );
 };

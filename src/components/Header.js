@@ -1,26 +1,39 @@
 import { React } from "react";
-import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { startLogout } from "../actions/auth";
+import { Link, NavLink } from "react-router-dom";
+import { startLogout } from "../actions/authAction";
 
-function Header() {
+function Header({ isAuthenticated }) {
   const dispatch = useDispatch();
-
+  const styles = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
   return (
-    <div>
-      <NavLink to="/" exact>
+    <div style={styles}>
+      <Link to="/dashboard">
         <h2>Header</h2>
-      </NavLink>
-      <NavLink to="/dashboard" activeClassName="is-active">
-        Dashborad
-      </NavLink>
-      <NavLink to="/addExpense" activeClassName="is-active">
-        Add Expense
-      </NavLink>
-      <NavLink to="/help" activeClassName="is-active">
-        Help
-      </NavLink>
-      <button onClick={dispatch(startLogout)}>Log out</button>
+      </Link>
+      <div>
+        {isAuthenticated && (
+          <NavLink to="/dashboard" activeClassName="is-active">
+            Dashborad
+          </NavLink>
+        )}
+        {isAuthenticated && (
+          <NavLink to="/addExpense" activeClassName="is-active">
+            Add Expense
+          </NavLink>
+        )}
+        <NavLink to="/help" activeClassName="is-active">
+          Help
+        </NavLink>
+
+        {isAuthenticated && (
+          <button onClick={dispatch(startLogout)}>Log out</button>
+        )}
+      </div>
     </div>
   );
 }

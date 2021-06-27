@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "react-dates/initialize";
 import { DateRangePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
@@ -12,25 +12,27 @@ import {
   setEndDate,
 } from "../actions/filtersAction";
 
-function FilterForm(props) {
+function FilterForm() {
   const [state, setState] = useState({
     focusedInput: null,
   });
+  const dispatch = useDispatch();
+  const filters = useSelector((state) => state.filters);
 
   const handleInput = (e) => {
     const userInput = e.target.value;
-    props.dispatch(setTextFilter(userInput));
+    dispatch(setTextFilter(userInput));
   };
 
   const handleSelect = (e) => {
     e.target.value === "date"
-      ? props.dispatch(sortByDate())
-      : props.dispatch(sortByAmount());
+      ? dispatch(sortByDate())
+      : dispatch(sortByAmount());
   };
 
   const onDatesChange = ({ startDate, endDate }) => {
-    props.dispatch(setStartDate(startDate));
-    props.dispatch(setEndDate(endDate));
+    dispatch(setStartDate(startDate));
+    dispatch(setEndDate(endDate));
   };
 
   const onFocusChange = (focusedInput) => {
@@ -43,17 +45,17 @@ function FilterForm(props) {
         type="text"
         name="filter"
         onChange={handleInput}
-        value={props.filters.text}
+        value={filters.text}
       />
-      <select onChange={handleSelect} value={props.filters.sortBy}>
+      <select onChange={handleSelect} value={filters.sortBy}>
         <option value="date">Date</option>
         <option value="amount">Amount</option>
       </select>
 
       <DateRangePicker
-        startDate={props.filters.startDate}
+        startDate={filters.startDate}
         startDateId="baslangic_id"
-        endDate={props.filters.endDate}
+        endDate={filters.endDate}
         endDateId="bitis_id"
         onDatesChange={onDatesChange}
         focusedInput={state.focusedInput}
@@ -66,8 +68,4 @@ function FilterForm(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  filters: state.filters,
-});
-
-export default connect(mapStateToProps)(FilterForm);
+export default FilterForm;
