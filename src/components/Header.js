@@ -12,7 +12,7 @@ function Header({ isAuthenticated }) {
   };
   return (
     <div style={styles}>
-      <Link to="/dashboard">
+      <Link to={isAuthenticated ? "/dashboard": "/"}>
         <h2>Header</h2>
       </Link>
       <div>

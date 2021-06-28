@@ -6,7 +6,6 @@ import { addExpense } from "../actions/expensesAction";
 function AddExpense(props) {
 
   const dispatch = useDispatch();
-
   return (
     <div>
       <h1>Add Expense</h1>

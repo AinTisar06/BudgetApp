@@ -1,7 +1,7 @@
 import firebase from "../firebase/firebase";
 
 const addExpense = (expenseData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     const {
       amount = 0,
       note = "",
@@ -9,9 +9,11 @@ const addExpense = (expenseData = {}) => {
       createdAt = 0,
     } = expenseData;
     const expense = { amount, note, description, createdAt };
+    const uid = getState().auth.uid;
+    console.log(uid);
     firebase
       .database()
-      .ref("expenses")
+      .ref(`users/${uid}/expenses`)
       .push(expense)
       .then((ref) => {
         dispatch({ type: "ADD_EXPENSE", expense: { id: ref.key, ...expense } });
@@ -23,10 +25,11 @@ const addExpense = (expenseData = {}) => {
 };
 
 const editExpense = (id, changeObj) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     firebase
       .database()
-      .ref(`expenses/${id}`)
+      .ref(`users/${uid}/expenses/${id}`)
       .update(changeObj)
       .then(() => {
         dispatch({ type: "EDIT_EXPENSE", id, changeObj });
@@ -38,10 +41,11 @@ const editExpense = (id, changeObj) => {
 };
 
 const removeExpense = (id) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     firebase
       .database()
-      .ref(`expenses/${id}`)
+      .ref(`users/${uid}/expenses/${id}`)
       .remove()
       .then(() => {
         dispatch({ type: "REMOVE_EXPENSE", id });
@@ -52,10 +56,11 @@ const removeExpense = (id) => {
 
 // Initial fetch from firebase
 const setExpenses = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     firebase
       .database()
-      .ref("expenses")
+      .ref(`users/${uid}/expenses`)
       .once("value")
       .then((snapshot) => {
         const expenses = [];

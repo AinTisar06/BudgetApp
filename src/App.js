@@ -8,13 +8,13 @@ import AppRouter from "./routers/AppRouter";
 import firebase from "./firebase/firebase";
 import "./styles/style.scss";
 
-function App() {
+const App =() => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      dispatch(login(user));
+      dispatch(login(user.uid));
       dispatch(setExpenses());
       history.push("/dashboard");
     } else {

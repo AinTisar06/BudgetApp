@@ -1,6 +1,5 @@
 import { React } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { startLogin } from "../actions/authAction";
 
 function Login() {
