@@ -1,0 +1,90 @@
+.login {
+  min-height: 100vh;
+  &__background {
+    padding-top: 10vh;
+    background-image: url(../images/aidan-bartos-v9rZ3Yz6fSg-unsplash.jpg);
+    background-size: cover;
+    min-height: 100vh;
+    filter: blur(5px);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  // dark : #323233
+  &__card {
+    background-color: #d3d3d3;
+    border-radius: 0.5rem;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    padding: 2rem 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    &-img {
+      background-image: url(../images/wallet-color.svg);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100% 100%;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      top: -30px;
+      left: -15px;
+      transform: rotate(-45deg);
+    }
+    &-title {
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    &-body {
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    &__btn {
+      align-items: center;
+      background-color: darken(#d3d3d3, 5%);
+      // background: transparent;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      font-weight: bold;
+      justify-content: space-between;
+      margin: 0 auto;
+      max-width: 14rem;
+      min-width: 12.5rem;
+      padding: 1rem;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        transform: translateY(-1px);
+        .login__card__btn-text {
+          background-image: linear-gradient(
+            90deg,
+            rgba(235, 65, 50, 1) 0%,
+            rgba(251, 189, 1, 1) 33%,
+            rgba(49, 169, 82, 1) 66%,
+            rgba(64, 134, 244, 1) 100%
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+      &-text {
+        color: hsl(227, 35%, 25%);
+        transition: all 0.3s ease-in-out;
+      }
+      &-logo {
+        background-image: url(../images/google.svg);
+        background-repeat: no-repeat;
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}

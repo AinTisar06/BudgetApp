@@ -14,7 +14,7 @@ const App =() => {
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      dispatch(login(user.uid));
+      dispatch(login(user.uid, user.photoURL));
       dispatch(setExpenses());
       history.push("/dashboard");
     } else {

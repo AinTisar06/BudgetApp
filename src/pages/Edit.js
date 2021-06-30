@@ -1,5 +1,7 @@
 import { React } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import ExpenseForm from "../components/ExpenseForm";
 import { editExpense, removeExpense } from "../actions/expensesAction";
 
@@ -13,6 +15,7 @@ function Edit(props) {
 
   return (
     <div>
+      <Header />
       <ExpenseForm
         expense={expense}
         onSubmit={(changeObj) => {
@@ -28,6 +31,7 @@ function Edit(props) {
       >
         Remove
       </button>
+      <Footer />
     </div>
   );
 }

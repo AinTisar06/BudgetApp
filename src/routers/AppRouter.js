@@ -8,15 +8,12 @@ import AddExpense from "../pages/AddExpense";
 import Edit from "../pages/Edit";
 import Help from "../pages/Help";
 import NotFound from "../pages/NotFound";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const AppRouter = () => {
   const isAuthenticated = useSelector((state) => !!state.auth.uid);
 
   return (
     <div>
-      <Header isAuthenticated={isAuthenticated}/>
       <Switch>
         <Route exact path="/" component={Login} />
         <Route
@@ -31,7 +28,6 @@ const AppRouter = () => {
         <Route path="/help" component={Help} />
         <Route component={NotFound} />
       </Switch>
-      <Footer />
     </div>
   );
 };

@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__profile {
+    display: flex;
+    &-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+    &-logout {
+      position: relative;
+      width: 25px;
+      left: -25px;
+      text-align: right;
+      padding-right: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      border-radius: 0 50px 50px 0;
+      outline: none;
+      opacity: 0;
+      &.open {
+        width: 90px;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.nav {
+}

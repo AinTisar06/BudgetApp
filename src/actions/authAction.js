@@ -1,9 +1,10 @@
 import firebase, { googleAuthProvider } from "../firebase/firebase";
 
-const login = (uid) => {
+const login = (uid,imgURL) => {
   return {
     type: "LOGIN",
     uid,
+    imgURL,
   };
 };
 

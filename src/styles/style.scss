@@ -1,4 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,300;0,400;0,600;0,900;1,300;1,400;1,600;1,900&display=swap");
+
 @import "./base/variables";
 @import "./base/global";
 
+@import "./pages/login";
+
 @import "./components/home";
+@import "./components/header";

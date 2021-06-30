@@ -10,7 +10,7 @@
     "firebase": "^8.6.8",
     "history": "^5.0.0",
     "moment": "^2.18.1",
-    "node-sass": "^6.0.0",
+    "node-sass": "^6.0.1",
     "react": "^16.14.0",
     "react-dates": "^21.8.0",
     "react-dom": "^16.14.0",

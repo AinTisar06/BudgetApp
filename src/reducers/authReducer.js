@@ -5,6 +5,7 @@ const authReducer = (state = {}, action) => {
     case "LOGIN":
       return {
         uid: action.uid,
+        imgURL: action.imgURL,
       };
     case "LOGOUT":
       return {};
