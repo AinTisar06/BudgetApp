@@ -15,7 +15,7 @@ function Edit(props) {
 
   return (
     <div>
-      <Header />
+      <Header path={props.location.pathname}/>
       <ExpenseForm
         expense={expense}
         onSubmit={(changeObj) => {

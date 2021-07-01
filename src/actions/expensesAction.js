@@ -10,7 +10,6 @@ const addExpense = (expenseData = {}) => {
     } = expenseData;
     const expense = { amount, note, description, createdAt };
     const uid = getState().auth.uid;
-    console.log(uid);
     firebase
       .database()
       .ref(`users/${uid}/expenses`)

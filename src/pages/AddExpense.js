@@ -9,7 +9,7 @@ function AddExpense(props) {
   const dispatch = useDispatch();
   return (
     <div>
-      <Header />
+      <Header path={props.location.pathname}/>
       <h1>Add Expense</h1>
       <ExpenseForm
         onSubmit={(expense) => {

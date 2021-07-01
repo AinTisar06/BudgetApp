@@ -6,7 +6,6 @@ import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import AddExpense from "../pages/AddExpense";
 import Edit from "../pages/Edit";
-import Help from "../pages/Help";
 import NotFound from "../pages/NotFound";
 
 const AppRouter = () => {
@@ -25,7 +24,6 @@ const AppRouter = () => {
           component={isAuthenticated ? AddExpense : Login}
         />
         <Route path="/edit/:id" component={isAuthenticated ? Edit : Login} />
-        <Route path="/help" component={Help} />
         <Route component={NotFound} />
       </Switch>
     </div>

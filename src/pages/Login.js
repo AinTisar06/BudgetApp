@@ -2,7 +2,7 @@ import { React } from "react";
 import { useDispatch } from "react-redux";
 import { startLogin } from "../actions/authAction";
 
-function Login() {
+const Login = () => {
   const dispatch = useDispatch();
 
   return (

@@ -3,10 +3,10 @@ import ExpenseList from "../components/ExpenseList";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
-    <div>
-      <Header />
+    <div className="container">
+      <Header path={props.location.pathname}/>
       <ExpenseList />
       <Footer />
     </div>

@@ -32,4 +32,29 @@
 }
 
 .nav {
+  a {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .5rem;
+  }
+  &-add {
+    &::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      display: inline-block;
+      background-image: url(../images/plus.svg);
+      background-repeat: no-repeat;
+      background-size: 24px 24px;
+      background-position: 0 0;
+    }
+  }
+  &-dash {
+    &::before {
+      @extend .nav-add::before;
+      background-image: url(../images/exit.svg);
+    }
+  }
 }
