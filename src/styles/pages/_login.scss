@@ -14,7 +14,7 @@
   }
   // dark : #323233
   &__card {
-    background: fade-out(#d3d3d3, 0.15) ;
+    background: fade-out($l-gray, 0.15) ;
     border-radius: 0.5rem;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
     padding: 2rem 1rem;
@@ -39,15 +39,16 @@
       font-weight: 600;
       font-style: italic;
       margin-bottom: 1rem;
+      color: $l-darkText;
     }
     &-body {
       font-weight: 400;
       margin-bottom: 1rem;
+      color: $l-text;
     }
     &__btn {
       align-items: center;
-      background-color: darken(#d3d3d3, 5%);
-      // background: transparent;
+      background-color: darken($l-blue, 5%);
       border: none;
       border-radius: 0.5rem;
       cursor: pointer;
@@ -75,7 +76,7 @@
         }
       }
       &-text {
-        color: hsl(227, 35%, 25%);
+        color: $l-lightGray;
         transition: all 0.3s ease-in-out;
       }
       &-logo {

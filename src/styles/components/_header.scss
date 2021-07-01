@@ -1,7 +1,8 @@
 .header {
+  align-items: center;
+  background-color: $l-gray;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   &__profile {
     display: flex;
     &-img {
@@ -13,18 +14,27 @@
       z-index: 1;
     }
     &-logout {
-      position: relative;
-      width: 25px;
-      left: -25px;
-      text-align: right;
-      padding-right: 0.5rem;
+      display: flex;
+      justify-content: end;
+      align-items: center;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
-      border-radius: 0 50px 50px 0;
-      outline: none;
+      border: none;
+      background: transparent;
+      transform: translateX(-25px);
       opacity: 0;
+      &::before {
+        content: "";
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-image: url("../images/exit.svg");
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        background-position: center center;
+      }
       &.open {
-        width: 90px;
+        transform: translateX(15px);
         opacity: 1;
       }
     }
@@ -33,11 +43,15 @@
 
 .nav {
   a {
-    text-decoration: none;
+    align-items: center;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    border-radius: 0.5rem;
+    color: $l-text;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
+    text-decoration: none;
+    padding: 4px 8px;
   }
   &-add {
     &::before {

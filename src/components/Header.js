@@ -13,7 +13,7 @@ const Header = ({ path }) => {
   };
 
   return (
-    <div className="header">
+    <div className="header container">
       <div className="header__profile">
         <img
           src={`${imgURL}`}
@@ -26,15 +26,17 @@ const Header = ({ path }) => {
           className={
             open ? `header__profile-logout open` : `header__profile-logout`
           }
-        >
-          Log out
-        </button>
+        ></button>
       </div>
       <div className="nav">
         {path === "/dashboard" ? (
-          <NavLink to="/addexpense" className="nav-add">Add</NavLink>
+          <NavLink to="/addexpense" className="nav-add">
+            Add Expense
+          </NavLink>
         ) : (
-          <NavLink to="/dashboard" className="nav-dash">Dashboard</NavLink>
+          <NavLink to="/dashboard" className="nav-dash">
+            Dashboard
+          </NavLink>
         )}
       </div>
     </div>

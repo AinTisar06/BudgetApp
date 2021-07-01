@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const Dashboard = (props) => {
   return (
-    <div className="container">
+    <div>
       <Header path={props.location.pathname}/>
       <ExpenseList />
       <Footer />

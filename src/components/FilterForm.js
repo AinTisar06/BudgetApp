@@ -41,29 +41,40 @@ function FilterForm() {
 
   return (
     <div>
-      <input
-        type="text"
-        name="filter"
-        onChange={handleInput}
-        value={filters.text}
-      />
-      <select onChange={handleSelect} value={filters.sortBy}>
-        <option value="date">Date</option>
-        <option value="amount">Amount</option>
-      </select>
+      <fieldset className="filter container">
+        <legend>Filter Your expenses</legend>
+        <section>
+          <input
+            type="text"
+            name="filter"
+            onChange={handleInput}
+            value={filters.text}
+            placeholder="Search"
+            className="filter-text"
+          />
+          <select
+            onChange={handleSelect}
+            value={filters.sortBy}
+            className="filter-select"
+          >
+            <option value="date">Date</option>
+            <option value="amount">Amount</option>
+          </select>
+        </section>
 
-      <DateRangePicker
-        startDate={filters.startDate}
-        startDateId="baslangic_id"
-        endDate={filters.endDate}
-        endDateId="bitis_id"
-        onDatesChange={onDatesChange}
-        focusedInput={state.focusedInput}
-        onFocusChange={onFocusChange}
-        showClearDates={true}
-        numberOfMonths={1}
-        isOutsideRange={() => false}
-      />
+        <DateRangePicker
+          startDate={filters.startDate}
+          startDateId="baslangic_id"
+          endDate={filters.endDate}
+          endDateId="bitis_id"
+          onDatesChange={onDatesChange}
+          focusedInput={state.focusedInput}
+          onFocusChange={onFocusChange}
+          showClearDates={true}
+          numberOfMonths={1}
+          isOutsideRange={() => false}
+        />
+      </fieldset>
     </div>
   );
 }

@@ -10,14 +10,12 @@ function ExpenseList(props) {
     getVisibleExpenses(state.expenses, state.filters)
   );
   return (
-    <div>
-      <h1>ExpenseList</h1>
-
+    <div className="expenses container">
       {expenses.length !== 0 ? <ExpensesSummary /> : <p>There is no expense</p>}
+      <FilterForm />
       {expenses.map((expense) => (
         <Expense key={expense.id} expense={expense} />
       ))}
-      <FilterForm />
     </div>
   );
 }
