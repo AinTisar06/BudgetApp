@@ -1,0 +1,29 @@
+.expenses {
+  margin: 1rem 0;
+}
+
+.expense {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr;
+  padding: 0.5rem 0.25rem;
+  border: 1px solid $gray;
+  background-color: darken(#fff, 5%);
+  &:nth-child(even) {
+    background-color: #fff;
+  }
+  &__title {
+    h3 {
+    }
+    p {
+      font-style: italic;
+      color: lighten($l-text, 25%);
+    }
+  }
+  &__amount {
+    text-align: right;
+  }
+
+  &__icons {
+    text-align: right;
+  }
+}

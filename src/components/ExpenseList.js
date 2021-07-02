@@ -16,9 +16,11 @@ function ExpenseList() {
       <Link to="/addexpense" className="btn btn-add"></Link>
 
       <FilterForm />
-      {expenses.map((expense) => (
-        <Expense key={expense.id} expense={expense} />
-      ))}
+      <div className="expenses">
+        {expenses.map((expense) => (
+          <Expense key={expense.id} expense={expense} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -14,13 +14,13 @@ function ExpensesSummary() {
   }).format(expensesTotal(visibleExpenses));
 
   return (
-    <>
+    <div class="summary">
       <p>
         Viewing: <strong>{` ${expensesCount}`}</strong>
         {expensesCount > 1 ? " expenses" : " expense"}. Totaling:
         <strong>{` ${total}`}</strong>
       </p>
-    </>
+    </div>
   );
 }
 
