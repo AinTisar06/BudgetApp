@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,300;0,400;0,600;0,900;1,300;1,400;1,600;1,900&display=swap");
 // Base
+@import "./base/mixins";
 @import "./base/variables";
 @import "./base/global";
+//Commons
+@import "./components/buttons";
 // Pages
 @import "./pages/login";
+@import "./pages/dashboard";
 // Components
 @import "./components/header";
 @import "./components/filter-form";
+

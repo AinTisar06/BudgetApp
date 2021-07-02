@@ -17,10 +17,7 @@ function ExpensesSummary() {
     <>
       <p>
         Viewing: <strong>{` ${expensesCount}`}</strong>
-        {expensesCount > 1 ? " expenses" : " expense"}.
-      </p>
-      <p>
-        Totaling:
+        {expensesCount > 1 ? " expenses" : " expense"}. Totaling:
         <strong>{` ${total}`}</strong>
       </p>
     </>

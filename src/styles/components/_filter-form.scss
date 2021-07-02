@@ -4,6 +4,11 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  max-width: 385px;
+  @include breakpoint(tablet) {
+    max-width: none;
+  }
+
   legend {
     font-style: italic;
     margin-left: .25rem;
@@ -12,18 +17,27 @@
   section {
     min-width: 307px;
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint(tablet) {
+      margin: 0;
+    }
+    label {
+      margin-right: .5rem;
+      color: $l-text;
+    }
   }
   &-text {
     padding: .25rem 1rem;
-    min-width: 75%;
     background-color: $l-gray;
+    margin-right: 1rem;
+    width: 100%;
     &:focus {
       outline: none;
     }
   }
   &-select {
     padding: .25rem;
-    width: 25%;
     color: $l-blue;
   }
 

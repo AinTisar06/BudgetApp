@@ -52,10 +52,12 @@ function FilterForm() {
             placeholder="Search"
             className="filter-text"
           />
+          <label for="order-by">Order</label>
           <select
             onChange={handleSelect}
             value={filters.sortBy}
             className="filter-select"
+            id="order-by"
           >
             <option value="date">Date</option>
             <option value="amount">Amount</option>

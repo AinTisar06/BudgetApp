@@ -1,44 +1,25 @@
-import { React, useState } from "react";
+import { React } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { startLogout } from "../actions/authAction";
+import { Link } from "react-router-dom";
 
-const Header = ({ path }) => {
+const Header = () => {
   const dispatch = useDispatch();
   const imgURL = useSelector((state) => state.auth.imgURL);
-  const [open, setOpen] = useState(false);
-
-  const handleProfileClick = () => {
-    setOpen(() => !open);
-  };
 
   return (
     <div className="header container">
-      <div className="header__profile">
+      <Link to="/dashboard" className="header__profile">
         <img
           src={`${imgURL}`}
           alt="User profil"
           className="header__profile-img"
-          onClick={handleProfileClick}
         />
-        <button
-          onClick={dispatch(startLogout)}
-          className={
-            open ? `header__profile-logout open` : `header__profile-logout`
-          }
-        ></button>
-      </div>
-      <div className="nav">
-        {path === "/dashboard" ? (
-          <NavLink to="/addexpense" className="nav-add">
-            Add Expense
-          </NavLink>
-        ) : (
-          <NavLink to="/dashboard" className="nav-dash">
-            Dashboard
-          </NavLink>
-        )}
-      </div>
+      </Link>
+      <button
+        onClick={dispatch(startLogout)}
+        className="btn btn-logout"
+      ></button>
     </div>
   );
 };

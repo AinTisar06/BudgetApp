@@ -6,11 +6,11 @@ import Footer from "../components/Footer";
 const Dashboard = (props) => {
   return (
     <div>
-      <Header path={props.location.pathname}/>
+      <Header />
       <ExpenseList />
       <Footer />
     </div>
   );
-}
+};
 
 export default Dashboard;
