@@ -1,5 +1,6 @@
 .filter {
   background-color: #fff;
+  border: 2px solid $gray;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,7 +12,7 @@
 
   legend {
     font-style: italic;
-    margin-left: .25rem;
+    margin-left: 0.25rem;
     color: $l-text;
   }
   section {
@@ -19,30 +20,81 @@
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     @include breakpoint(tablet) {
       margin: 0;
     }
-    label {
-      margin-right: .5rem;
+    .select-label {
+      margin-right: 0.5rem;
       color: $l-text;
+      font-size: .75rem;
     }
   }
-  &-text {
-    padding: .25rem 1rem;
-    background-color: $l-gray;
-    margin-right: 1rem;
-    width: 100%;
-    &:focus {
-      outline: none;
-    }
-  }
+
   &-select {
-    padding: .25rem;
+    padding: 0.25rem;
     color: $l-blue;
+    border: none;
+    border-bottom: 2px solid $gray;
+  }
+}
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  width: 50%;
+}
+
+.form__field {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  color: $l-text;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  margin-right: 1rem;
+  &::placeholder {
+    color: transparent;
   }
 
-  .DateRangePicker {
-    display: inline-block;
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 14px;
   }
+}
 
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: $l-text;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $primary, $secondary);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
+  }
 }

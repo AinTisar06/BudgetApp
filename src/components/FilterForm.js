@@ -43,16 +43,18 @@ function FilterForm() {
     <div>
       <fieldset className="filter container">
         <legend>Filter Your expenses</legend>
-        <section>
+        <section className="form__group field">
           <input
             type="text"
             name="filter"
             onChange={handleInput}
             value={filters.text}
             placeholder="Search"
-            className="filter-text"
+            // className="filter-text"
+            className="form__field"
           />
-          <label for="order-by">Order</label>
+          <label className="form__label">Search</label>
+          <label for="order-by" className="select-label">Order</label>
           <select
             onChange={handleSelect}
             value={filters.sortBy}
