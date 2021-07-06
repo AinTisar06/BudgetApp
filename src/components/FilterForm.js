@@ -54,7 +54,9 @@ function FilterForm() {
             className="form__field"
           />
           <label className="form__label">Search</label>
-          <label for="order-by" className="select-label">Order</label>
+          <label htmlFor="order-by" className="select-label">
+            Order
+          </label>
           <select
             onChange={handleSelect}
             value={filters.sortBy}

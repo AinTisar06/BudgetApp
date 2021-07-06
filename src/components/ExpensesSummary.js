@@ -14,7 +14,7 @@ function ExpensesSummary() {
   }).format(expensesTotal(visibleExpenses));
 
   return (
-    <div class="summary">
+    <div className="summary">
       <p>
         Viewing: <strong>{` ${expensesCount}`}</strong>
         {expensesCount > 1 ? " expenses" : " expense"}. Totaling:
