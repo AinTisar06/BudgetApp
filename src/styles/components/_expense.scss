@@ -1,29 +1,67 @@
-.expenses {
-  margin: 1rem 0;
-}
-
 .expense {
   display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
-  padding: 0.5rem 0.25rem;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "title title"
+    "amount icons";
+  padding: 0.25rem;
   border: 1px solid $gray;
   background-color: darken(#fff, 5%);
   &:nth-child(even) {
     background-color: #fff;
   }
   &__title {
-    h3 {
+    align-self: center;
+    text-align: center;
+    position: relative;
+    grid-area: title;
+    h6 {
+      font-size: 16px;
+      font-weight: 400;
+      text-decoration: underline;
     }
     p {
+      position: absolute;
+      top: 0;
+      left: 0;
       font-style: italic;
+      font-size: 0.75rem;
       color: lighten($l-text, 25%);
     }
   }
-  &__amount {
+
+  .expense-amount {
+    align-self: center;
     text-align: right;
+    padding: 0.25rem;
+    grid-area: amount;
+    margin-right: 4px;
+    font-family: $numeric;
   }
 
-  &__icons {
-    text-align: right;
+  .expense-icons {
+    grid-area: icons;
+    align-self: center;
+    text-align: center;
+    padding: 0.25rem;
+    border-left: 1px solid $gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &-edit {
+      width: 24px;
+      height: 24px;
+      background-image: url("../images/edit.svg");
+      background-position: center;
+      background-size: 24px 24px;
+      cursor: pointer;
+    }
+    &-delete {
+      @extend .expense-icons-edit;
+      background-image: url("../images/delete.svg");
+      background-position: center;
+      background-size: 24px 24px;
+    }
   }
 }
