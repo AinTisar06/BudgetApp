@@ -1,3 +1,24 @@
 .expenseList {
   margin: 1rem 0;
+  text-align: center;
+  &-title {
+    display: none;
+    padding: 0.25rem;
+    border: 1px solid $gray;
+    height: 43px;
+    h5 {
+      font-size: 1rem;
+      align-self: center;
+      padding: 7px 0;
+      &:not(:last-child) {
+        border-right: 1px solid $gray;
+      }
+    }
+    @include breakpoint(tablet) {
+      display: grid;
+      grid-template-columns: 90px 3fr 1fr 150px 125px;
+      grid-template-rows: 1fr;
+      grid-template-areas: "date title note amount icons";
+    }
+  }
 }

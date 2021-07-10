@@ -6,7 +6,7 @@
   align-items: center;
   flex-wrap: wrap;
   max-width: 385px;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   @include breakpoint(tablet) {
     max-width: none;
   }
@@ -27,14 +27,14 @@
     }
     .select-label {
       margin-right: 0.5rem;
-      color: $l-text;
-      font-size: .75rem;
+      color: #9d9d9d;
+      font-size: 0.75rem;
     }
   }
 
   &-select {
     padding: 0.25rem;
-    color: $l-blue;
+    color: $l-text;
     border: none;
     border-bottom: 2px solid $gray;
   }
@@ -73,7 +73,7 @@
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: $l-text;
+  color: #9d9d9d;
 }
 
 .form__field:focus {

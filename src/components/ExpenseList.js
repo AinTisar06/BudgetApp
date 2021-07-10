@@ -17,6 +17,13 @@ function ExpenseList() {
 
       <FilterForm />
       <div className="expenseList">
+        <div className="expenseList-title">
+          <h5>Date</h5>
+          <h5>Description</h5>
+          <h5>Note</h5>
+          <h5>Amount</h5>
+          <h5>Links</h5>
+        </div>
         {expenses.map((expense) => (
           <Expense key={expense.id} expense={expense} />
         ))}

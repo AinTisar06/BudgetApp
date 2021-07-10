@@ -14,5 +14,13 @@ body {
 
 .container {
   padding: 1rem;
+  @include breakpoint(tablet) {
+    padding: 1rem 2rem;
+  }
+  @include breakpoint(laptop) {
+    padding: 1rem 7rem;
+  }
+  @include breakpoint(desktop) {
+    padding: 1rem 15rem;
+  }
 }
-

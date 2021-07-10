@@ -1,6 +1,7 @@
 .expense {
+  position: relative;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 3fr 100px;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     "title title"
@@ -8,39 +9,67 @@
   padding: 0.25rem;
   border: 1px solid $gray;
   background-color: darken(#fff, 5%);
+  @include breakpoint(tablet) {
+    grid-template-columns: 90px 3fr 1fr 150px 125px;
+    grid-template-rows: 1fr;
+    grid-template-areas: "date title note amount icons";
+  }
   &:nth-child(even) {
     background-color: #fff;
   }
   &__title {
     align-self: center;
     text-align: center;
-    position: relative;
     grid-area: title;
-    h6 {
-      font-size: 16px;
-      font-weight: 400;
-      text-decoration: underline;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: underline;
+    padding: 7px 0;
+    border-right: 1px solid $gray;
+    @include breakpoint(tablet) {
+      border-left: 1px solid $gray;
     }
-    p {
-      position: absolute;
-      top: 0;
-      left: 0;
-      font-style: italic;
-      font-size: 0.75rem;
-      color: lighten($l-text, 25%);
+  }
+  &__note {
+    display: none;
+    @include breakpoint(tablet) {
+      grid-area: note;
+      display: block;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.25rem;
+      color: $l-text;
+    }
+  }
+  &__date {
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    font-style: italic;
+    font-size: 0.75rem;
+    color: lighten($l-text, 25%);
+    @include breakpoint(tablet) {
+      position: static;
+      align-self: center;
+      grid-area: date;
+      font-size: 0.875rem;
     }
   }
 
-  .expense-amount {
+  &-amount {
     align-self: center;
     text-align: right;
     padding: 0.25rem;
     grid-area: amount;
     margin-right: 4px;
     font-family: $numeric;
+    overflow: hidden;
+    @include breakpoint(tablet) {
+      border-left: 1px solid $gray;
+    }
   }
 
-  .expense-icons {
+  &-icons {
     grid-area: icons;
     align-self: center;
     text-align: center;
@@ -60,6 +89,12 @@
     &-delete {
       @extend .expense-icons-edit;
       background-image: url("../images/delete.svg");
+      background-position: center;
+      background-size: 24px 24px;
+    }
+    &-copy {
+      @extend .expense-icons-edit;
+      background-image: url("../images/copy.svg");
       background-position: center;
       background-size: 24px 24px;
     }

@@ -1,4 +1,9 @@
 .summary {
+  position: sticky;
+  top: 0;
+  padding: 1rem 0;
+  background-color: $l-lightGray;
+  z-index: 99;
   p {
     strong {
       font-weight: 600;
