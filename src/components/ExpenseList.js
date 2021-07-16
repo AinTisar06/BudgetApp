@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
 import Expense from "./Expense";
 import FilterForm from "./FilterForm";
 import getVisibleExpenses from "../selectors/expensesSelector";
@@ -10,6 +11,26 @@ function ExpenseList() {
   const expenses = useSelector((state) =>
     getVisibleExpenses(state.expenses, state.filters)
   );
+  useEffect(() => {
+    const tl = gsap.timeline();
+    tl.fromTo(
+      ".expense",
+      {
+        y: 10,
+        opacity: 0,
+      },
+      {
+        duration: 0.5,
+        stagger: 0.1,
+        opacity: 1,
+        y: 0,
+      }
+    );
+    return () => {
+      tl.kill();
+    };
+  }, [expenses.length]);
+
   return (
     <div className="container">
       {expenses.length !== 0 ? <ExpensesSummary /> : <p>There is no expense</p>}
