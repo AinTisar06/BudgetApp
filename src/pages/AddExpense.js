@@ -7,16 +7,18 @@ import ExpenseForm from "../components/ExpenseForm";
 function AddExpense(props) {
   const dispatch = useDispatch();
   return (
-    <div>
+    <>
       <Header path={props.location.pathname} />
-      <h1>Add Expense</h1>
-      <ExpenseForm
-        onSubmit={(expense) => {
-          dispatch(addExpense(expense));
-          props.history.push("/dashboard");
-        }}
-      />
-    </div>
+      <div className="container">
+        <h1>Add Expense</h1>
+        <ExpenseForm
+          onSubmit={(expense) => {
+            dispatch(addExpense(expense));
+            props.history.push("/dashboard");
+          }}
+        />
+      </div>
+    </>
   );
 }
 

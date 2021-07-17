@@ -60,13 +60,14 @@ function ExpenseForm(props) {
   };
 
   return (
-    <div>
-      {error && <p>{error}</p>}
+    <div className="expense-form">
+      {error && <p className="expense-form-error">{error}</p>}
       <form onSubmit={handleAddExpense}>
         <input
           type="text"
           placeholder="Description"
           name="description"
+          className="expense-form__desc"
           value={description}
           onChange={handleDescription}
           autoFocus
@@ -74,9 +75,18 @@ function ExpenseForm(props) {
         <input
           type="number"
           name="amount"
+          className="expense-form__amount"
           placeholder="Amount"
           value={amount}
           onChange={handleAmount}
+        />
+        <textarea
+          rows="5"
+          name="note"
+          placeholder="Note"
+          className="expense-form__note"
+          value={note}
+          onChange={handleNote}
         />
         <SingleDatePicker
           date={createdAt}
@@ -87,13 +97,7 @@ function ExpenseForm(props) {
           isOutsideRange={() => false}
           id="murat"
         />
-        <textarea
-          name="note"
-          placeholder="Note"
-          value={note}
-          onChange={handleNote}
-        />
-        <button type="submit">
+        <button type="submit" className="btn expense-form__submit">
           {props.expense ? "Edit Expense" : "Add Expense"}
         </button>
       </form>

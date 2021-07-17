@@ -1,0 +1,30 @@
+.expense-form {
+  margin-top: 1rem;
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+
+  &-error {
+  }
+  &__desc {
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+  }
+  &__amount {
+    @extend .expense-form__desc;
+    font-family: $numeric;
+  }
+  .SingleDatePicker {
+    width: 100%;
+  }
+  &__note {
+    @extend .expense-form__desc;
+    resize: none;
+  }
+  &__submit {
+    justify-self: start;
+  }
+}
