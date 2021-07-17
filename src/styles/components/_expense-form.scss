@@ -1,5 +1,15 @@
 .expense-form {
-  margin-top: 1rem;
+  border-radius: 0.5rem;
+  margin: 2rem auto;
+  max-width: 343px;
+  background-color: $l-gray;
+  padding: 1rem;
+  @include breakpoint(tablet) {
+    max-width: 530px;
+  }
+  @include breakpoint(laptop) {
+    max-width: 37.5rem;
+  }
   form {
     display: grid;
     grid-template-columns: 1fr;
@@ -7,24 +17,25 @@
   }
 
   &-error {
+    margin-bottom: 1rem;
   }
   &__desc {
     width: 100%;
     padding: 0.25rem 0.5rem;
     font-size: 1rem;
+    border-radius: 0.25rem;
   }
   &__amount {
     @extend .expense-form__desc;
     font-family: $numeric;
   }
-  .SingleDatePicker {
-    width: 100%;
-  }
   &__note {
     @extend .expense-form__desc;
     resize: none;
   }
-  &__submit {
-    justify-self: start;
+  &__buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
   }
 }

@@ -16,7 +16,7 @@
     }
     @include breakpoint(tablet) {
       display: grid;
-      grid-template-columns: 90px 3fr 1fr 150px 125px;
+      grid-template-columns: 90px 1fr 1fr 150px 125px;
       grid-template-rows: 1fr;
       grid-template-areas: "date title note amount icons";
     }

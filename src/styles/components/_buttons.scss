@@ -6,7 +6,7 @@
   color: $l-text;
   cursor: pointer;
   display: inline-flex;
-  font-size: .875rem;
+  font-size: 0.875rem;
   gap: 0.5rem;
   justify-content: space-between;
   padding: 4px 8px;
@@ -44,6 +44,25 @@
         content: "Logout";
       }
     }
-
+  }
+  &-remove {
+    &::before {
+      background-image: url("../images/delete.svg");
+    }
+    &::after {
+      @include breakpoint(tablet) {
+        content: "Remove";
+      }
+    }
+  }
+  &-edit {
+    &::before {
+      background-image: url("../images/edit.svg");
+    }
+    &::after {
+      @include breakpoint(tablet) {
+        content: "Save";
+      }
+    }
   }
 }

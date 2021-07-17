@@ -9,8 +9,12 @@
   padding: 0.25rem;
   border: 1px solid $gray;
   background-color: darken(#fff, 5%);
+  &:not(:first-of-type) {
+    border-top: none;
+  }
   @include breakpoint(tablet) {
-    grid-template-columns: 90px 3fr 1fr 150px 125px;
+    border-top: none;
+    grid-template-columns: 90px 1fr 1fr 150px 125px;
     grid-template-rows: 1fr;
     grid-template-areas: "date title note amount icons";
   }
@@ -24,14 +28,16 @@
     font-size: 1rem;
     font-weight: 400;
     text-decoration: underline;
+    text-transform: uppercase;
     padding: 7px 0;
-    border-right: 1px solid $gray;
     @include breakpoint(tablet) {
+      border-right: 1px solid $gray;
       border-left: 1px solid $gray;
     }
   }
   &__note {
     display: none;
+    text-align: left;
     @include breakpoint(tablet) {
       grid-area: note;
       display: block;

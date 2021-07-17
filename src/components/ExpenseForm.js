@@ -19,11 +19,17 @@ function ExpenseForm(props) {
   const [error, setError] = useState("");
 
   const handleDescription = (e) => {
+    if (error) {
+      setError("");
+    }
     const description = e.target.value;
     setDescription(description);
   };
 
   const handleAmount = (e) => {
+    if (error) {
+      setError("");
+    }
     const amount = e.target.value;
     // Regular Expression for Money
     if (amount.match(/^\d*(\.\d{0,2})?$/)) {
@@ -46,7 +52,7 @@ function ExpenseForm(props) {
 
   const handleAddExpense = (e) => {
     e.preventDefault();
-    if (!description || !amount) {
+    if (!description || parseFloat(amount) <= 0) {
       setError("Please provide description and amount!");
     } else {
       setError("");
@@ -97,9 +103,18 @@ function ExpenseForm(props) {
           isOutsideRange={() => false}
           id="murat"
         />
-        <button type="submit" className="btn expense-form__submit">
-          {props.expense ? "Edit Expense" : "Add Expense"}
-        </button>
+        <div className="expense-form__buttons">
+          <button
+            type="submit"
+            className={props.expense ? "btn btn-edit" : "btn btn-add"}
+          ></button>
+          {props.delete && (
+            <button
+              className="btn btn-remove expense-form__remove"
+              onClick={props.delete}
+            ></button>
+          )}
+        </div>
       </form>
     </div>
   );

@@ -15,12 +15,12 @@ body {
 .container {
   padding: 1rem;
   @include breakpoint(tablet) {
-    padding: 1rem 2rem;
+    padding: 1rem 3rem;
   }
   @include breakpoint(laptop) {
-    padding: 1rem 7rem;
+    padding: 1rem 9rem;
   }
   @include breakpoint(desktop) {
-    padding: 1rem 15rem;
+    padding: 1rem 18rem;
   }
 }

@@ -13,24 +13,23 @@ function Edit(props) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <>
       <Header path={props.location.pathname} />
-      <ExpenseForm
-        expense={expense}
-        onSubmit={(changeObj) => {
-          dispatch(editExpense(props.match.params.id, changeObj));
-          props.history.push("/dashboard");
-        }}
-      />
-      <button
-        onClick={() => {
-          dispatch(removeExpense(props.match.params.id));
-          props.history.push("/dashboard");
-        }}
-      >
-        Remove
-      </button>
-    </div>
+      <div className="container">
+        <h1>Edit Expense</h1>
+        <ExpenseForm
+          expense={expense}
+          onSubmit={(changeObj) => {
+            dispatch(editExpense(props.match.params.id, changeObj));
+            props.history.push("/dashboard");
+          }}
+          delete={() => {
+            dispatch(removeExpense(props.match.params.id));
+            props.history.push("/dashboard");
+          }}
+        />
+      </div>
+    </>
   );
 }
 

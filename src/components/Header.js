@@ -5,17 +5,20 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const imgURL = useSelector((state) => state.auth.imgURL);
+  const user = useSelector((state) => state.auth);
 
   return (
     <div className="header container">
-      <Link to="/dashboard" className="header__profile">
-        <img
-          src={`${imgURL}`}
-          alt="User profil"
-          className="header__profile-img"
-        />
-      </Link>
+      <div className="header__profile">
+        <Link to="/dashboard">
+          <img
+            src={`${user.imgURL}`}
+            alt="User profil"
+            className="header__profile-img"
+          />
+        </Link>
+        <p>{user.name}</p>
+      </div>
       <button
         onClick={dispatch(startLogout)}
         className="btn btn-logout"
