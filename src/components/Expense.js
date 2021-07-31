@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { removeExpense } from "../actions/expensesAction";
@@ -14,6 +14,15 @@ function Expense({ expense: { id, amount, createdAt, description, note } }) {
   const handleEdit = () => {
     history.push(`/edit/${id}`);
   };
+
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(false);
+    }, 1000);
+  }, [show]);
+
   return (
     <div className="expense">
       <p className="expense__date">{moment(createdAt).format("DD/MM/YYYY")}</p>
@@ -26,8 +35,15 @@ function Expense({ expense: { id, amount, createdAt, description, note } }) {
         }).format(amount)}
       </p>
       <div className="expense-icons">
-        <CopyToClipboard text={amount}>
-          <div className="expense-icons-copy"></div>
+        <CopyToClipboard
+          text={amount}
+          onCopy={() => {
+            setShow(true);
+          }}
+        >
+          <div className="expense-icons-copy">
+            {show && <div className="expense-icons-modal">Amount Copied</div>}
+          </div>
         </CopyToClipboard>
         <div className="expense-icons-edit" onClick={handleEdit}></div>
         <div className="expense-icons-delete" onClick={handleDelete}></div>

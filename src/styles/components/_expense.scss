@@ -104,5 +104,24 @@
       background-position: center;
       background-size: 24px 24px;
     }
+    &-modal {
+      clip-path: polygon(
+        0% 0%,
+        100% 0%,
+        100% 80%,
+        75% 80%,
+        50% 100%,
+        25% 80%,
+        0 80%
+      );
+      background-color: #000;
+      color: white;
+      position: relative;
+      width: 100px;
+      height: 60px;
+      top: -60px;
+      left: -38px;
+      padding: 0.25rem;
+    }
   }
 }
